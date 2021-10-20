@@ -16,6 +16,7 @@ net.setInputScale(1.0/ 127.5)
 net.setInputMean((127.5, 127.5, 127.5))
 net.setInputSwapRB(True)
 while True:
+    print("Detecting Objects!")
     foundObjects = [];
     success,image = camera.read()
     classIds, confs, bbox = net.detect(image,confThreshold=0.60,nmsThreshold=0.13)
