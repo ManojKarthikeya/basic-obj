@@ -1,9 +1,10 @@
 import cv2
 import pyttsx3
+print("Loading assets....")
 engine = pyttsx3.init()
 camera = cv2.VideoCapture(0)
-camera.set(cv2.CAP_PROP_FRAME_WIDTH,1280)
-camera.set(cv2.CAP_PROP_FRAME_HEIGHT,720)
+camera.set(cv2.CAP_PROP_FRAME_WIDTH,640)
+camera.set(cv2.CAP_PROP_FRAME_HEIGHT,480)
 classNames= [];
 classFile = "./coco.names"
 with open(classFile,"rt") as f:
@@ -16,7 +17,7 @@ net.setInputScale(1.0/ 127.5)
 net.setInputMean((127.5, 127.5, 127.5))
 net.setInputSwapRB(True)
 while True:
-    print("Detecting Objects!")
+    print("Detecting Objects...")
     foundObjects = [];
     success,image = camera.read()
     classIds, confs, bbox = net.detect(image,confThreshold=0.60,nmsThreshold=0.13)
@@ -30,3 +31,4 @@ while True:
         print("I found a ",i, "!")
         engine.say(i)
         engine.runAndWait()
+
